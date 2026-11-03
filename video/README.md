@@ -65,11 +65,15 @@ This is a research demonstration, not an operational flood warning or decision p
 - `scene.html` — preview/render entry point.
 - `render.mjs` — browser renderer, FFmpeg encoder, posters and deployment copies.
 - `make_audio.py` — original synthesized ambient score.
+- `remix_audio.py` — regenerate and master the soundtrack, then replace audio in both MP4 copies without re-encoding the picture (`npm run video:audio` from the repository root).
+- `sound-cues.json` — timed cue sheet for the original sound effects.
 - `package.json`, `package-lock.json` — pinned rendering dependencies.
 
 ## Assets and licensing
 
 No stock footage, generated still-image sequence, third-party meshes, downloaded textures or audio recordings are used. Terrain, geometry, water shader, terrain texture and audio are authored procedurally for this project. The font is the local Arial/Helvetica system font rendered into video pixels; no font file is redistributed.
+
+The soundtrack follows the edit with stereo camera whooshes, granular grid scatter, flowing-water textures and droplets, Fred rain and rolling thunder, five pipeline tones, alternating measured/model pings, a quieter community passage, a distinct Helene wind gust, and a resolving title chord. Independent stereo textures and equal-power panning give the effects space. Two-pass FFmpeg mastering targets −16 LUFS integrated and a −1.5 dBTP ceiling, followed by a clean ending fade. No narration or third-party samples are included. The autoplay hero loop remains silent.
 
 | Dependency or source | Author / source | License | Use |
 | --- | --- | --- | --- |

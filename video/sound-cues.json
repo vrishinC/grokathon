@@ -1,0 +1,46 @@
+{
+  "duration": 34,
+  "sample_rate": 48000,
+  "cues": [
+    {
+      "time_seconds": 0.12,
+      "sound": "Opening low impact and map scan"
+    },
+    {
+      "time_seconds": 2,
+      "sound": "Stereo air dive and two muted street-detail ticks"
+    },
+    {
+      "time_seconds": 5,
+      "sound": "Grid fracture, granular scatter and scale-change shimmer"
+    },
+    {
+      "time_seconds": 8,
+      "sound": "Open valley wind, flowing water and near-field droplets"
+    },
+    {
+      "time_seconds": 11,
+      "sound": "Fred rainfall swell, distant thunder and rising-water rush"
+    },
+    {
+      "time_seconds": 15,
+      "sound": "Analytical reveal and five synchronized pipeline tones"
+    },
+    {
+      "time_seconds": 19,
+      "sound": "Comparison swipe and alternating measured/model pings"
+    },
+    {
+      "time_seconds": 22,
+      "sound": "Quiet neighborhood water and a soft two-part human-impact pulse"
+    },
+    {
+      "time_seconds": 27,
+      "sound": "Helene wind gust, sparse rain and deeper storm accent"
+    },
+    {
+      "time_seconds": 30,
+      "sound": "Aerial pullback, tonal resolution and long clean tail"
+    }
+  ]
+}
