@@ -5,6 +5,15 @@
   "type": "module",
   "scripts": {
     "start": "python3 -m http.server 4173 --directory dist --bind 127.0.0.1",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "lint": "eslint dist/*.js scripts/*.mjs tests/*.mjs video/*.mjs video/scene.js",
+    "check": "node --check dist/app.js && node --check dist/hydrology.js && node --check dist/experience.js",
+    "build": "node scripts/validate-static.mjs",
+    "video:preview": "npm --prefix video run preview",
+    "video:render": "npm --prefix video run render",
+    "data:census": "node scripts/fetch-census.mjs"
+  },
+  "devDependencies": {
+    "eslint": "10.14.0"
   }
 }

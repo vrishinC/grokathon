@@ -45,4 +45,36 @@ export function validatePrediction(data, event, maxSize=20000) {
   if(Date.parse(data.samples.at(-1).time)<Date.parse(event.samples[0].time)||Date.parse(data.samples[0].time)>Date.parse(event.samples.at(-1).time)) throw new Error('The prediction must overlap the observed event.');
   return {eventId:data.eventId,label:data.label,provenance:data.provenance,samples:data.samples.map(s=>({time:s.time,flow_cfs:s.flow_cfs}))};
 }
+export function sampleInterval(samples) {
+  const intervals=samples.slice(1).map((sample,i)=>Date.parse(sample.time)-Date.parse(samples[i].time)).filter(ms=>ms>0).sort((a,b)=>a-b);
+  if(!intervals.length)return 0;
+  const middle=Math.floor(intervals.length/2);
+  return intervals.length%2 ? intervals[middle] : (intervals[middle-1]+intervals[middle])/2;
+}
+
+// Only measured/model samples close in time are compared. Every observed sample
+// can appear at most once; no interpolation, extrapolation or filled data gaps.
+export function compareHydrographs(observed, predicted, toleranceMs=sampleInterval(observed)/2) {
+  const empty={matchedCount:0,observedCount:observed.length,coverage:0,toleranceMs,observedPeak:null,modelPeak:null,peakErrorCfs:null,peakErrorPercent:null,timingErrorMinutes:null,nse:null,firstTime:null,lastTime:null};
+  if(!observed.length||!predicted.length)return empty;
+  if(!Number.isFinite(toleranceMs)||toleranceMs<0)throw new Error('Comparison tolerance must be a nonnegative number of milliseconds.');
+  const times=observed.map(s=>Date.parse(s.time)), matched=new Map();
+  let cursor=0;
+  for(const model of predicted){
+    const time=Date.parse(model.time);
+    if(time<times[0]||time>times.at(-1))continue;
+    while(cursor+1<times.length&&Math.abs(times[cursor+1]-time)<Math.abs(times[cursor]-time))cursor++;
+    const difference=Math.abs(times[cursor]-time), previous=matched.get(cursor);
+    if(difference<=toleranceMs&&(!previous||difference<previous.difference))matched.set(cursor,{observed:observed[cursor],model,difference});
+  }
+  const pairs=[...matched.values()];
+  if(!pairs.length)return empty;
+  const observedPeak=pairs.reduce((peak,pair)=>pair.observed.flow_cfs>peak.flow_cfs?pair.observed:peak,pairs[0].observed);
+  const modelPeak=pairs.reduce((peak,pair)=>pair.model.flow_cfs>peak.flow_cfs?pair.model:peak,pairs[0].model);
+  const mean=pairs.reduce((sum,pair)=>sum+pair.observed.flow_cfs,0)/pairs.length;
+  const denominator=pairs.reduce((sum,pair)=>sum+(pair.observed.flow_cfs-mean)**2,0);
+  const numerator=pairs.reduce((sum,pair)=>sum+(pair.observed.flow_cfs-pair.model.flow_cfs)**2,0);
+  const peakErrorCfs=modelPeak.flow_cfs-observedPeak.flow_cfs;
+  return {...empty,matchedCount:pairs.length,coverage:pairs.length/observed.length,observedPeak,modelPeak,peakErrorCfs,peakErrorPercent:observedPeak.flow_cfs?peakErrorCfs/observedPeak.flow_cfs*100:null,timingErrorMinutes:(Date.parse(modelPeak.time)-Date.parse(observedPeak.time))/60000,nse:pairs.length>1&&denominator>0?1-numerator/denominator:null,firstTime:pairs[0].observed.time,lastTime:pairs.at(-1).observed.time};
+}
 export function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}

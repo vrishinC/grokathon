@@ -1,0 +1,15 @@
+{
+  "name": "aquatic-cinematic-renderer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preview": "python3 -m http.server 4174 --directory .. --bind 127.0.0.1",
+    "samples": "node render.mjs --sample",
+    "audio": "python3 make_audio.py",
+    "render": "python3 make_audio.py && node render.mjs && node render.mjs --hero"
+  },
+  "dependencies": {
+    "playwright-core": "1.51.1",
+    "three": "0.170.0"
+  }
+}
