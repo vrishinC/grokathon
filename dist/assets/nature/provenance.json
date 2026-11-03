@@ -1,0 +1,52 @@
+{
+  "asset_name": "Rock 09",
+  "asset_id": "rock_09",
+  "creator": "Jenelle van Heerden",
+  "provider": "Poly Haven",
+  "asset_url": "https://polyhaven.com/a/rock_09",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "provider_license_url": "https://polyhaven.com/license",
+  "download_date": "2026-11-02",
+  "format": "glTF 2.0 with 1k textures",
+  "total_asset_bytes": 1964421,
+  "usage": "Optional illustrative natural scenery only; not surveyed geometry or evidence of any flood condition.",
+  "modifications": null,
+  "files": [
+    {
+      "path": "rock_09_1k.gltf",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/rock_09/rock_09_1k.gltf",
+      "bytes": 2745,
+      "md5": "d12ac6e8433fe1346fe6945154269f66",
+      "sha256": "636e57eb0090889627da18edaec202ff9f65f83101b94f91b7da4d21dc080ab9"
+    },
+    {
+      "path": "rock_09.bin",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/rock_09/rock_09.bin",
+      "bytes": 286592,
+      "md5": "6f2f71c9ca594566c1a3b29da27293a1",
+      "sha256": "780c37d6fc11ca3a01c3763535ef883908b6007271a46bd446d2289ded820751"
+    },
+    {
+      "path": "textures/rock_09_arm_1k.jpg",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_09/rock_09_arm_1k.jpg",
+      "bytes": 322950,
+      "md5": "323d7cca17cd87656e7f80230a372368",
+      "sha256": "594e2cec49e6bb40bd9bab2649e37dcc261079456cf4d6f680f56770c19db5ea"
+    },
+    {
+      "path": "textures/rock_09_diff_1k.jpg",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_09/rock_09_diff_1k.jpg",
+      "bytes": 595103,
+      "md5": "07f92b23d6e05fbd28cbabecdd98b321",
+      "sha256": "afb7ae5ae82238d304aba589391ac6bc87f7cf1dbfe50980c21f762cfdd87efd"
+    },
+    {
+      "path": "textures/rock_09_nor_gl_1k.jpg",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_09/rock_09_nor_gl_1k.jpg",
+      "bytes": 757031,
+      "md5": "dc1a208133a23006582f792a309c2dcc",
+      "sha256": "2195b5c7da3a23af2a5f93dbb20f38bc069028509b106397bc8d2aee0bc55729"
+    }
+  ]
+}

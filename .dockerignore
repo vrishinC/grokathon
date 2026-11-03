@@ -1,0 +1,5 @@
+.git
+.openai
+node_modules
+tests
+*.tar.gz
